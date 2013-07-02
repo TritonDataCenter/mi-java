@@ -1,0 +1,7 @@
+name="java"
+organization="Joyent"
+brand="Instance"
+version="13.1.0"
+description="A SmartOS 64-bit image with Java JDK (1.6.0_26), Apache (2.4.4), Apache Tomcat (7.0.35), Apache Ant (1.8.4) and Apache Maven (3.0.5) installed and configured as well as the common Java ENV variables (JAVA_HOME, CATALINA_HOME, ANT_HOME) setup for all users."
+homepage="http://wiki.joyent.com/jpc2/Java+Instance"
+users="root admin tomcat"

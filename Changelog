@@ -1,0 +1,12 @@
+# Changelog for mi-java
+
+java-13.1.0
+* Initial release
+* Base image is base64-13.1.0
+* JDK version is 1.6.0_26
+* Apache version is 2.4.4
+* Apache Tomcat version is 7.0.35
+* Apache Ant version is 1.8.4
+* Apache Maven version is 3.0.5
+* Default configuration of Apache/Tomcat on http://public.ip and uses tomcat user/password in portal
+* Java ENV variables setup for all users (JAVA_HOME,CATALINA_HOME,ANT_HOME)

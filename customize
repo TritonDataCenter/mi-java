@@ -1,0 +1,48 @@
+#!/usr/bin/bash
+#
+# Put customizations to your image in this file.
+
+PATH=/opt/local/gnu/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin
+
+# Exit if any commands fail
+set -o errexit
+
+# Ensure we have updated standard packages
+echo "* Updating standard packages.";
+pkg_delete -v nodejs smtools
+pkg_add -v nodejs smtools dtracetools htop
+npm install smartdc -g
+npm install jsontool -g
+
+# Configuring image specific packages
+echo "* Configuring image specific packages.";
+
+# Setup envs for JAVA 
+cat >> /etc/profile <<EOF
+export JAVA_HOME=/opt/local/java/sun6
+export CATALINA_HOME=/opt/local/share/tomcat
+export ANT_HOME=/opt/local
+EOF
+cp /opt/local/lib/java/ant/* /opt/local/lib/
+
+# Configure tomcat to listen only on localhost and UTF8
+gsed -i 's/<Connector port="8080"/<Connector address="127.0.0.1" port="8080"/g' /opt/local/share/tomcat/conf/server.xml
+gsed -i 's/<Connector port="8009"/<Connector address="127.0.0.1" port="8009"/g' /opt/local/share/tomcat/conf/server.xml
+gsed -i 's/redirectPort="8443"/redirectPort="8443" URIEncoding="UTF-8"/g' /opt/local/share/tomcat/conf/server.xml
+
+# Fix permissions on tomcat directory
+chown -R tomcat:tomcat /opt/local/share/tomcat
+
+# Configure apache to enable proxy modules
+gsed -i 's!#LoadModule proxy_module lib/httpd/mod_proxy.so!LoadModule proxy_module lib/httpd/mod_proxy.so!g' /opt/local/etc/httpd/httpd.conf
+gsed -i 's!#LoadModule proxy_connect_module lib/httpd/mod_proxy_connect.so!LoadModule proxy_connect_module lib/httpd/mod_proxy_connect.so!g' /opt/local/etc/httpd/httpd.conf
+gsed -i 's!#LoadModule proxy_http_module lib/httpd/mod_proxy_http.so!LoadModule proxy_http_module lib/httpd/mod_proxy_http.so!g' /opt/local/etc/httpd/httpd.conf
+
+# Configure apache to include virtualhosts directory
+echo "Include etc/httpd/virtualhosts/*.conf" >> /opt/local/etc/httpd/httpd.conf
+
+# Clean up
+echo "* Cleaning up."
+rm -rf /root/*
+
+sm-prepare-image -y

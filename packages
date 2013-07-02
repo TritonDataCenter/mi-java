@@ -1,0 +1,9 @@
+# List packages to add to your image one per line.
+sun-jdk6
+apache
+apache-tomcat
+apache-ant
+scmgit
+hg-git
+apache-maven
+apachetop
