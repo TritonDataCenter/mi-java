@@ -10,7 +10,7 @@ set -o errexit
 # Ensure we have updated standard packages
 echo "* Updating standard packages.";
 pkg_delete -v nodejs smtools
-pkg_add -v nodejs smtools dtracetools htop
+pkg_add -v nodejs smtools
 npm install smartdc -g
 npm install jsontool -g
 

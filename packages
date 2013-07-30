@@ -1,4 +1,6 @@
 # List packages to add to your image one per line.
+dtracetools
+htop
 sun-jdk6
 apache
 apache-tomcat
