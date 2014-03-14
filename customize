@@ -9,8 +9,8 @@ set -o errexit
 
 # Ensure we have updated standard packages
 echo "* Updating standard packages.";
-pkg_delete -v nodejs smtools
-pkg_add -v nodejs smtools
+pkg_delete -v nodejs smtools zoneinit
+pkg_add -v nodejs smtools zoneinit
 npm install smartdc -g
 npm install jsontool -g
 
@@ -19,7 +19,7 @@ echo "* Configuring image specific packages.";
 
 # Setup envs for JAVA 
 cat >> /etc/profile <<EOF
-export JAVA_HOME=/opt/local/java/sun6
+export JAVA_HOME=/opt/local/java/openjdk7
 export CATALINA_HOME=/opt/local/share/tomcat
 export ANT_HOME=/opt/local
 EOF

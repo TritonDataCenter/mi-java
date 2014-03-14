@@ -1,5 +1,14 @@
 # Changelog for mi-java
 
+java-13.3.1
+* Base image is base64-13.3.1 (2013Q3)
+* Change java from sun-jdk to openjdk
+* OpenJDK version is 1.7.25
+* Apache version is 2.4.6
+* Apache Tomcat version is 7.0.42
+* Apache Ant version is 1.9.2
+* Apache Maven version is 3.0.5
+
 java-13.1.0
 * Initial release
 * Base image is base64-13.1.0

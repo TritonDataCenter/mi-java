@@ -1,7 +1,7 @@
 # List packages to add to your image one per line.
 dtracetools
 htop
-sun-jdk6
+openjdk7
 apache
 apache-tomcat
 apache-ant
